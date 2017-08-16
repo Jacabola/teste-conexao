@@ -1,0 +1,17 @@
+{
+    "name": "teste-conexao",
+    "version": "1.0.0",
+    "keywords": [
+        "util",
+        "functional",
+        "server",
+        "client",
+        "browser"
+    ],
+    "author": "root",
+    "contributors": [],
+    "dependencies": {
+        "express": "^4.15.4",
+        "socket.io": "^2.0.3"
+    }
+}
