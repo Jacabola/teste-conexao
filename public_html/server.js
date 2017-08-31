@@ -14,8 +14,6 @@ postgres.query('CREATE TABLE IF NOT EXISTS usuario(' +
         'email varchar(70) not null,'+
         'CONSTRAINT solucoes_pedagio_ciot_id_pk PRIMARY KEY (id));');
 
-console.log(postgres.query('SELECT * FROM usuario'));
-
 
 app.use('/css', express.static(__dirname + '/css'));
 app.use('/js', express.static(__dirname + '/js'));

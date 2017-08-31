@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div id="game"></div>
+        <script src="/socket.io/socket.io.js"></script>
+        <script type="text/javascript" src="js/phaser.min.js"></script>
+        <script type="text/javascript" src="js/personagem.js"></script>
+        <script>
+            var personagem = new Personagem('Mateus', 0, 0, 0, 10, 10);
+
+            var Client = {};
+            Client.socket = io.connect();
+            Client.sendTest = function () {
+                Client.socket.emit('test');
+            };
+
+            Client.movimentarPlayer = function () {
+                Client.socket.emit('movimentarPlayer', personagem);
+            };
+
+            //Game Phaser
+            var Game = {};
+            var cursors;
+
+
+            console.log(Game);
+
+            Game.init = function () {
+                game.stage.disableVisibilityChange = true;
+                console.log('b');
+            };
+
+            Game.preload = function () {
+
+            };
+
+            Game.create = function () {
+                //Teclas
+                cursors = game.input.keyboard.createCursorKeys();
+            };
+
+            Game.update = function () {
+                console.log('a');
+                if (cursors.left.isDown) {
+                    personagem.posicaoX = personagem.posicaoX - 20;
+                    Client.movimentarPlayer(personagem);
+                } else if (cursors.right.isDown) {
+                    personagem.posicaoX = personagem.posicaoX + 20;
+                    Client.movimentarPlayer(personagem);
+                }
+            };
+
+            var game = new Phaser.Game(24 * 32, 17 * 32, Phaser.AUTO, document.getElementById('game'));
+            game.state.add('Game', Game);
+            game.state.start('Game');
+
+            //-----------
+
+        </script> 
+
+        <button onclick="Client.sendTest();">Enviar Teste</button>
+    </body>
+</html>
