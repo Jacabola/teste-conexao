@@ -20,7 +20,7 @@ io.on('connection', function (socket) {
         console.log('Teste Ativado');
     });
     
-    socket.on('movimentarPlayer', function (data) {
-        console.log(data);
+    socket.on('movimentarPlayer', function (personagem) {
+        io.emit('move',personagem);
     });
 });
